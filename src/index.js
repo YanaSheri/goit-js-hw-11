@@ -6,7 +6,6 @@ import SimpleLightbox from 'simplelightbox';
 
 const KEY = '25287120-bf1334483d346d0412f62d231';
 const BASE_URL = 'https://pixabay.com/api/?';
-// https://pixabay.com/api/?key={ KEY }&q=yellow+flowers&image_type=photo
 const form = document.querySelector('#search-form');
 const input = document.querySelector('input');
 const gallery = document.querySelector('.gallery');
@@ -16,7 +15,6 @@ let page = 1;
 let inputValue = '';
 let imageQuantity = 0;
 
-
 const fetchImages = async (query) => {
   try {
     const response = await axios.get(
@@ -24,7 +22,6 @@ const fetchImages = async (query) => {
       &image_type=photo&orientation=horizontal
       &safesearch=true&per_page=${imagesPerPage}&page=${page}`,
     );
-    // return response.json();
       return response;
   } catch (error) {
     console.log(error.message);
@@ -32,7 +29,6 @@ const fetchImages = async (query) => {
 };
 
 const getImages = async event => {
-    // console.log(imageQuantity);
     event.preventDefault();
     btnLoadMore.style.display = 'none';
     gallery.innerHTML = '';
@@ -43,7 +39,6 @@ const getImages = async event => {
     imageQuantity = imagesPerPage;
     console.log(data);
     createMarkup(data);
-    // console.log(data.hits.length);
 
     if (!data.data.hits.length) {
         console.log(data.data.hits.length);
@@ -69,7 +64,6 @@ const createMarkup = (data) => {
   
   const markup = data.data.hits
     .map(card => {
-    //   console.log(card);
         return `<a href="${card.largeImageURL}"><div class="photo-card">
                     <img src="${card.webformatURL}" alt="${card.tags}" loading="lazy" />
                     <div class="info">
