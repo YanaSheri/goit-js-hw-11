@@ -8,7 +8,6 @@ const BASE_URL = 'https://pixabay.com/api/?';
 const form = document.querySelector("#search-form");
 const input = document.querySelector("input");
 const gallery = document.querySelector(".gallery");
-// console.log(input);
 
 function fetchImages(query) {
     return fetch(`${BASE_URL}key=${KEY}&q=${query}&image_type=photo&orientation=horizontal&safesearch=true`)
@@ -18,7 +17,6 @@ function fetchImages(query) {
             // }
             return response.json()
         })
-        // .then(data => console.log(data))
         .catch(error => console.log(error));
 };
 
@@ -37,8 +35,6 @@ function getImages(event) {
             return data;
         }) 
 };
-
-// function imageItem ()
 
 function createMarkup(data) {
     // if (countries.length === null) {
