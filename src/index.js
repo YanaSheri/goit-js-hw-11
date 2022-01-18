@@ -37,7 +37,6 @@ const getImages = async event => {
     
     const data = await fetchImages(inputValue);
     imageQuantity = imagesPerPage;
-    console.log(data);
     createMarkup(data);
 
     if (!data.data.hits.length) {
@@ -54,7 +53,6 @@ const getImages = async event => {
 form.addEventListener('submit', getImages);
 
 const createMarkup = (data) => {
-    console.log(typeof data);
     if (data.data.hits.length === 0) {
       gallery.innerHTML = '';
     return Notiflix.Notify.failure(
@@ -92,11 +90,8 @@ const loadMoreImages = async event => {
     const data = await fetchImages(inputValue, page);
     createMarkup(data);
     imageQuantity += imagesPerPage;
-    console.log(imageQuantity);
-    console.log(data.data.totalHits);
     if (imageQuantity >= data.data.totalHits) {
         btnLoadMore.style.display = "none";
-        console.log('counted!');
         return Notiflix.Notify.warning("We're sorry, but you've reached the end of search results.");
     } 
 };
